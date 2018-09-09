@@ -1,0 +1,5 @@
+INSERT INTO item_inventory (id,item,sell_in,quality,add_date,quality_change,increment,decrement,double_increment,double_decrement) VALUES (1,'+5 Dexterity Vest',10,20,'2018-09-01',true,false,true,false,false);
+INSERT INTO item_inventory (id,item,sell_in,quality,add_date,quality_change,increment,decrement,double_increment,double_decrement) VALUES (2,'Aged Brie',2,0,'2018-09-01',true,true,false,false,false);
+INSERT INTO item_inventory (id,item,sell_in,quality,add_date,quality_change,increment,decrement,double_increment,double_decrement) VALUES (3,'Elixir of the Mongoose',5,7,'2018-09-01',true,false,true,false,false);
+INSERT INTO item_inventory (id,item,sell_in,quality,add_date,quality_change,increment,decrement,double_increment,double_decrement) VALUES (4,'Sulfuras',0,80,'2018-09-01',false,false,false,false,false);
+INSERT INTO item_inventory (id,item,sell_in,quality,add_date,quality_change,increment,decrement,double_increment,double_decrement) VALUES (5,'Concert backstage passes',15,20,'2018-09-01',true,true,false,true,false);
