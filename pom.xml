@@ -6,13 +6,17 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<jackson.version>2.7.5</jackson.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.version>3.6.1</maven.compiler.version>
 	</properties>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.7.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 	</parent>
 
 	<dependencies>
@@ -29,62 +33,52 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>com.spotify</groupId>
-					<artifactId>docker-maven-plugin</artifactId>
-					<configuration>
-						<imageName>example</imageName>
-						<baseImage>java:8</baseImage>
-						<entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
-						<!-- copy the service's jar file from target into the root directory 
-							of the image -->
-						<resources>
-							<resource>
-								<targetPath>/</targetPath>
-								<directory>${project.build.directory}</directory>
-								<include>${project.build.finalName}.jar</include>
-							</resource>
-						</resources>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>2.3.2</version>
-					<configuration>
-						<source>${java.version}</source>
-						<target>${java.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-war-plugin</artifactId>
-					<version>2.4</version>
-					<configuration>
-						<warSourceDirectory>src/main/webapp</warSourceDirectory>
-						<warName>SpringCrudOperations</warName>
-						<failOnMissingWebXml>false</failOnMissingWebXml>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-
-		<finalName>SpringCrudOperations</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>https://repo.spring.io/libs-release</url>
+		</repository>
+		<repository>
+			<id>org.jboss.repository.releases</id>
+			<name>JBoss Maven Release Repository</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-releases</id>
+			<name>Spring Releases</name>
+			<url>https://repo.spring.io/libs-release</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<packaging>war</packaging>
 </project>
